@@ -45,7 +45,7 @@ if($total_data > 0)
     <tr>
       <td>'.$row["id"].'</td>
       <td>'.$row["title"].'</td>
-      <td><input class="chkCheckBoxId" type="checkbox" id="lib_id" name="lib_id[]" value="'. $row['id'] .'"  </td> 
+      <td><input class="chkCheckBoxId" type="checkbox" id="lib_id" name="lib_id[]" value="'. $row['id'] .'" ></td> 
     </tr>
     ';
   }
