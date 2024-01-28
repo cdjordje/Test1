@@ -3,6 +3,8 @@
 
 $connect = new PDO("mysql:host=localhost; dbname=test1", "root", "");
 
+$checked_value_array =  json_decode($_POST['temp_arr']);
+
 $query = "
 SELECT * FROM library 
 ";
@@ -41,11 +43,17 @@ if($total_data > 0)
 {
   foreach($result as $row)
   {
+    $checked = '';
+    $id = $row['id'];
+    if (in_array($id , $checked_value_array)){
+      $checked = 'checked';
+    }
+
     $output .= '
     <tr>
       <td>'.$row["id"].'</td>
       <td>'.$row["title"].'</td>
-      <td><input class="chkCheckBoxId" type="checkbox" id="lib_id" name="lib_id[]" value="'. $row['id'] .'" ></td> 
+      <td><input class="chkCheckBoxId" type="checkbox" id="lib_id_'.$row['id'].'" onclick="getCheckedValue(this)" name="lib_id[]" value="'. $row['id'] .'"  '.$checked.'></td> 
     </tr>
     ';
   }
@@ -63,4 +71,5 @@ echo $output;
 
 
 ?>
+ 
  
