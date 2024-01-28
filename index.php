@@ -35,10 +35,11 @@
 
     function load_data(page, query = '')
     {
+      var temp_arr = JSON.stringify(checked_value_array);
       $.ajax({
         url:"fetch.php",
         method:"POST",
-        data:{page:page, query:query},
+        data:{page:page, query:query,temp_arr:temp_arr},
         success:function(data)
         {
           $('#dynamic_content').html(data);
@@ -59,4 +60,19 @@
 
   });
   
+</script>
+<script>
+var checked_value_array = [];
+  function getCheckedValue(THIS){
+    var temp = $(THIS).val();
+
+    if($("#lib_id_"+temp).prop('checked') == true){
+      checked_value_array.push(temp);
+    }else{
+      checked_value_array = checked_value_array.filter(function(item) {
+      return item !== temp
+    });
+    
+  }
+}
 </script>
